@@ -59,14 +59,42 @@ function showDataToDom(){
     let count = 0;
     function CartCount(){
         
-        
+        window.alert("Item sucessfully added to cart")
         count++ ;
     
         localStorage.setItem("CartItems", count);
+
+        sendingCartData();
     }
     
     
     
+}
+//saving cart data in firebase 
+//it is called on clicking add to cart button
+function sendingCartData(){
+
+    const productId = localStorage.getItem('ProductNumber') - 1;
+    console.log(productId);
+    const data = {
+        id : productId
+    };
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if (xhr.status === 1){ 
+            console.log("req sent");
+        }
+        if (xhr.status === 4){ 
+             console.log("save success");
+        }
+    };
+
+    xhr.open(
+        "POST",
+        "https://todoapp-a57e1-default-rtdb.firebaseio.com/cart.json",
+        true
+    );
+    xhr.send(JSON.stringify(data));
 }
 
 // function addToCart(){
