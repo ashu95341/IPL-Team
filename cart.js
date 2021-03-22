@@ -110,3 +110,24 @@ function userCartShown(){
 function placeOrder(){
     window.location.href = "./confirm.html";
 }
+
+//delete order
+function deleteItem(event){
+    // event.target.style.color = "blue";
+    const xhr = new XMLHttpRequest();
+
+    xhr.open(
+        "DELETE",
+        "https://todoapp-a57e1-default-rtdb.firebaseio.com/cart.json",
+        true
+    );
+    xhr.onreadystatechange = function(){
+        if(this.readyState === xhr.DONE && this.status === 200){
+            console.log("delete successful");
+            // console.log(event.target.id);
+            
+        };
+    };
+
+    xhr.send();
+}
