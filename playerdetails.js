@@ -1,5 +1,6 @@
 const container = document.getElementById("player-container");
-
+const leftSection = document.getElementById("leftsection")
+const rightSection = document.getElementById("rightsection")
 
 let playerName = localStorage.getItem("name");
 console.log(playerName);
@@ -31,42 +32,46 @@ function showDataToDom(){
     for(let i=0; i < allPlayers.length; i++){
         if(allPlayers[i].playerName == playerName){
             // console.log(allPlayers[i].description)
+
             const image = document.createElement('img');
+            image.src = allPlayers[i].image;
             
-            const name = document.createElement("h3");
-            name.innerHTML = allPlayers[i].playerName;
+            const name = document.createElement("h5");
+            name.innerHTML = "He is " + allPlayers[i].playerName;
 
-            const team = document.createElement("h3");
-            team.innerHTML = allPlayers[i].from;
+            const team = document.createElement("h5");
+            team.innerHTML = "Playing for " + allPlayers[i].from;
 
-            const price = document.createElement("h3");
-            price.innerHTML = allPlayers[i].price;
+            const price = document.createElement("h5");
+            price.innerHTML = "Bought for " + allPlayers[i].price + " Crores";
             
-            const playingStatus = document.createElement("h3");
+            const playingStatus = document.createElement("h5");
             
             
             
             if(allPlayers[i].isPlaying === "true"){
                     
-                    playingStatus.innerHTML = "playing";
+                    playingStatus.innerHTML = "Current Status is Playing";
             }else{
-                    playingStatus.innerHTML = "on-bench";
+                    playingStatus.innerHTML = "Current Status is On-Bench";
             }
 
-            const role = document.createElement('h3');
-            role.innerHTML = allPlayers[i].description;
+            const role = document.createElement('h5');
+            role.innerHTML = "Playing as " + allPlayers[i].description;
                 
             
 
 
 
 
-
-            container.append(name);
-            container.append(team);
-            container.append(price);
-            container.append(playingStatus);
-            container.append(role);
+            leftSection.append(image);
+            rightSection.append(name);
+            rightSection.append(team);
+            rightSection.append(price);
+            rightSection.append(playingStatus);
+            rightSection.append(role);
+            container.append(leftSection);
+            container.append(rightSection);
 
 
         }

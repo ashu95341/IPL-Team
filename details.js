@@ -46,17 +46,47 @@ function showDataToDom(){
             // console.log(i);
             sum++;
             const cardWrapper = document.createElement("div")
+            cardWrapper.classList.add("onecard");
+            
+            const playerImage = document.createElement("img")
+            playerImage.src = allPlayers[i].image;
+            playerImage.classList.add("playerimage");
+
             const playerName = document.createElement("h4")
-            
-            
-            
             playerName.innerText = allPlayers[i].playerName;
             playerName.classList.add("playername");
+
+            const playerTeam = document.createElement("p")
+            playerTeam.innerText = "Playing for " + allPlayers[i].from;
+            playerTeam.classList.add("playerteam");
+
+            const playerPrice = document.createElement("p")
+            playerPrice.innerText = "Bought for -" +  allPlayers[i].price + "Crores" ;
+            playerPrice.classList.add("playerprice");
+
+            const playerStatus = document.createElement("p")
+            if(allPlayers[i].isPlaying == "true"){
+                playerStatus.innerText = "Coming Matches : Playing";
+            }
+            if(allPlayers[i].isPlaying == "false"){
+                playerStatus.innerText = "Coming Matches : On-Bench";
+            }
+            
+            playerStatus.classList.add("playerstatus");
+
+            const playerRole = document.createElement("p")
+            playerRole.innerText = "Player Type : " + allPlayers[i].description;
+            playerRole.classList.add("playerrole");
             // playerName.onclick = addPlayer();
                
-            
-            cardWrapper.append(playerName);
             playerCard.append(cardWrapper);
+            cardWrapper.append(playerImage);
+            cardWrapper.append(playerName);
+            cardWrapper.append(playerTeam);
+            cardWrapper.append(playerPrice);
+            cardWrapper.append(playerStatus);
+            cardWrapper.append(playerRole);
+            
             
             //click events
 
@@ -111,7 +141,7 @@ function showDataToDom(){
             console.log(allPlayers[i].playerName);
 
             
-            bestBatsman.innerHTML = "Best Batsman of Team is " + allPlayers[i].playerName;
+            bestBatsman.innerHTML = "Best Batsman of Team is : " + allPlayers[i].playerName;
 
         }
 
@@ -123,13 +153,13 @@ function showDataToDom(){
             console.log(allPlayers[i].playerName);
 
             
-            bestBowler.innerHTML = "Best Bowler of Team is " + allPlayers[i].playerName;
+            bestBowler.innerHTML = "Best Bowler of Team is : " + allPlayers[i].playerName;
 
         }
 
     };
     
-    playerCount.innerHTML = "Total players in Team is " + sum;
+    playerCount.innerHTML = "Present Players Count is : " + sum;
     
     
     
