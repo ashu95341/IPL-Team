@@ -1,5 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 #add-players-container{
     display: grid;
+    grid-row-gap: 10px;
     max-width: 200px;
+    
+}
+nav{
+    padding: 20px 280px;
+    background-color: rgb(79, 231, 125);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+    
+}
+button{
+    border: 0px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    color: seashell;
+    background-color:grey;
+}
+#content-wrapper{
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+#teams-container{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; 
+    justify-content: space-evenly;
+}
+.teamcard{
+    width: 25%;
+    height: 40%;
+    margin: 20px;
+    padding: 50px 20px;
+    background-color: yellow;
+
+    text-align: center;
+    
+    text-transform: uppercase;
     
 }

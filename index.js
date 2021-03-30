@@ -5,43 +5,77 @@ const playerPrice = document.getElementById("player-price");
 const playerStatus = document.getElementById("player-status");
 const playerDescription = document.getElementById("player-description");
 const imageUrl = document.getElementById("img-url");
+const addPlayerMenu = document.getElementById("add-players-container");
 
 // if(window.location.search == "csk")
 
 
-function saveData(){
+// function saveData(){
 
-    const playersData = {
-                "id" : playerId.value,
-                "playerName" : playerName.value,
-                "from" : playerTeam.value,
-                "price" : playerPrice.value,
-                "isPlaying" : playerStatus.value,
-                "description" : playerDescription.value,
-                "image-url" : imageUrl.value
-            };
+//     const playersData = {
+//                 "id" : playerId.value,
+//                 "playerName" : playerName.value,
+//                 "from" : playerTeam.value,
+//                 "price" : playerPrice.value,
+//                 "isPlaying" : playerStatus.value,
+//                 "description" : playerDescription.value,
+//                 "image-url" : imageUrl.value
+//             };
         
     
+//     const xhr = new XMLHttpRequest();
+    
+//     xhr.onreadystatechange = function(){
+//         if (xhr.status === 1){ 
+//             console.log("req sent");
+//         }
+//         if (xhr.status === 4){ 
+//              console.log("save success");
+//         }
+//         };
+    
+//     xhr.open(
+//         "POST",
+//         "https://ipl-team-afc91-default-rtdb.firebaseio.com/teams.json",
+//         true
+//     );
+    
+//     xhr.send(JSON.stringify(playersData));
+    
+// };
+// store data in local 
+let allPlayers = {};
+function getData(){
     const xhr = new XMLHttpRequest();
     
-    xhr.onreadystatechange = function(){
-        if (xhr.status === 1){ 
-            console.log("req sent");
-        }
-        if (xhr.status === 4){ 
-             console.log("save success");
-        }
-        };
-    
     xhr.open(
-        "POST",
+        "GET",
         "https://ipl-team-afc91-default-rtdb.firebaseio.com/teams.json",
         true
     );
-    
-    xhr.send(JSON.stringify(playersData));
-    
-};
+
+    xhr.onreadystatechange = function(){
+        if (xhr.readyState === xhr.DONE && xhr.status === 200){
+            allPlayers = Object.values(JSON.parse(xhr.response));
+            // console.log(allPlayers);
+            // const keys = Object.keys(allPlayers);
+            // console.log(keys)
+            // console.log(allUsers.id) //undefined case
+            
+            showDataToDom();
+        }
+    };
+    xhr.send();
+}
+getData();
+let stringdata = {};
+function showDataToDom(){
+    console.log(allPlayers);
+    stringdata = JSON.stringify(allPlayers);
+    let localData = localStorage.setItem('allData', stringdata );
+    // console.log(stringdata)
+
+}
 
 //onclicks
 
@@ -112,3 +146,46 @@ function onclickeddc(){
 //     // console.log(localStorage)
 //     // console.log(typeof(data))
 // }
+
+let getfromlocal = JSON.parse(localStorage.getItem('allData'));
+console.log(getfromlocal);
+let objArray = [];
+
+console.log(objArray);
+function saveData(){
+    const playersData = {
+        "id" : playerId.value,
+        "playerName" : playerName.value,
+        "from" : playerTeam.value,
+        "price" : playerPrice.value,
+        "isPlaying" : playerStatus.value,
+        "description" : playerDescription.value,
+        "image" : imageUrl.value
+    };
+    console.log(playersData)
+    
+    objArray.push(playersData);
+    console.log(objArray)
+    let newLocal = getfromlocal.concat(objArray)
+    console.log(newLocal);
+    localStorage.setItem('allData', JSON.stringify(newLocal));
+};
+
+// console.log(localData)
+
+//adding players tab 
+localStorage.setItem('addmenu', false);
+function addPlayers(){
+    localStorage.setItem('addmenu', true);
+    showCorrectComponent();
+
+}
+
+function showCorrectComponent(){
+    console.log(localStorage.getItem('addmenu'))
+    if(localStorage.getItem('addmenu') === false){
+        console.log("hi")
+        addPlayerMenu.remove();
+    }
+}
+showCorrectComponent();
