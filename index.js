@@ -91,6 +91,21 @@ function onclickedcsk(){
 function onclickeddc(){
     localStorage.setItem("team", "DC");
 };
+function onclickedrr(){
+    localStorage.setItem("team", "RR");
+};
+function onclickedkkr(){
+    localStorage.setItem("team", "KKR");
+};
+function onclickedkep(){
+    localStorage.setItem("team", "KEP");
+};
+function onclickedsrh(){
+    localStorage.setItem("team", "SRH");
+};
+function onclickedmi(){
+    localStorage.setItem("team", "MI");
+};
 
 
 
@@ -168,13 +183,15 @@ function saveData(){
     console.log(objArray)
     let newLocal = getfromlocal.concat(objArray)
     console.log(newLocal);
+    // localStorage.setItem('allData', newLocal);
     localStorage.setItem('allData', JSON.stringify(newLocal));
 };
 
 // console.log(localData)
 
 //adding players tab 
-localStorage.setItem('addmenu', false);
+
+
 function addPlayers(){
     localStorage.setItem('addmenu', true);
     showCorrectComponent();
@@ -183,9 +200,58 @@ function addPlayers(){
 
 function showCorrectComponent(){
     console.log(localStorage.getItem('addmenu'))
-    if(localStorage.getItem('addmenu') === false){
-        console.log("hi")
+    if(localStorage.getItem('addmenu') === "false"){
+        // console.log("hi")
         addPlayerMenu.remove();
+    }else{
+        document.getElementById("content-wrapper").append(addPlayerMenu);
     }
 }
-showCorrectComponent();
+
+function closeSubmit(){
+    localStorage.setItem('addmenu', false)
+    showCorrectComponent();
+}
+
+//searchbar
+
+const charactersList = document.getElementById('charactersList');
+const searchBar = document.getElementById('searchBar');
+
+
+searchBar.addEventListener('keyup', (e) => {
+    console.log(e.target.value)
+    const searchString = e.target.value.toLowerCase();
+    
+    
+
+    const filteredCharacters = getfromlocal.filter((character) => {
+        return (
+            // character.playerName.toLowerCase().includes(searchString) ||
+            character.from.toLowerCase().includes(searchString)
+            
+        );
+        
+    });
+    displayCharacters(filteredCharacters);
+    
+});
+
+
+const displayCharacters = (characters) => {
+    const htmlString = characters
+        .map((character) => {
+            return `
+            <div id="card">
+                <h2>${character.playerName}</h2>
+                <p>Team: ${character.from}</p>
+                <img src="${character.image}"></img>            
+            </div>
+        `;
+        })
+        .join('');
+    charactersList.innerHTML = htmlString;
+};
+
+
+

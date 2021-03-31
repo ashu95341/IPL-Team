@@ -13,23 +13,36 @@
         <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
+        <script src="./index.js" async defer></script>
         <header>
             <nav>
                 <div>
                     <h3>HOME</h3>
                 </div>
-                <div>
-                    <form action="#">
-                        <img src="#" alt="">
-                        <input type="text" placeholder="search here" id="search-box">
-                    </form>
+                <div class="container">
+                    <div id="searchWrapper">
+                        <input
+                            type="text"
+                            name="searchBar"
+                            id="searchBar"
+                            placeholder="search for a character"
+                        />
+                    </div>
+                    
                 </div>
+                
                 <div>
                     <button onclick="addPlayers()">Add Players</button>
                 </div>
             </nav>
         </header>
         <main>
+            
+            <div id="charactersList">
+
+            </div>
+        
+            
             <div id="content-wrapper">
                 <div id="teams-container">
                     <div id="card csk" class="teamcard">
@@ -39,19 +52,19 @@
                         <a href="./details.html" onclick="onclickedmi()">Mumbai Indians</a>
                     </div>
                     <div id="card rr" class="teamcard">
-                        <a href="./details.html">Rajasthan Royals</a>
+                        <a href="./details.html" onclick="onclickedrr()">Rajasthan Royals</a>
                     </div>
                     <div id="card dc" class="teamcard">
                         <a href="./details.html" onclick="onclickeddc()">Delhi Capitals</a>
                     </div>
                     <div id="card kkr" class="teamcard">
-                        <a href="./details.html">Kolkata Kinght riders</a>
+                        <a href="./details.html" onclick="onclickedkkr()">Kolkata Kinght riders</a>
                     </div>
                     <div id="card kep" class="teamcard">
-                        <a href="./details.html">kings 11 Punjab</a>
+                        <a href="./details.html" onclick="onclickedkep()">kings 11 Punjab</a>
                     </div>
                     <div id="card srh" class="teamcard">
-                        <a href="./details.html">Sunrisers Hyderabad</a>
+                        <a href="./details.html" onclick="onclickedsrh()">Sunrisers Hyderabad</a>
                     </div>
                 </div>
                 <div id="add-players-container">
@@ -73,6 +86,6 @@
 
         </main>
         
-        <script src="./index.js" async defer></script>
+        
     </body>
 </html>

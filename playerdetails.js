@@ -5,28 +5,34 @@ const rightSection = document.getElementById("rightsection")
 let playerName = localStorage.getItem("name");
 console.log(playerName);
 
-function getData(){
-    const xhr = new XMLHttpRequest();
+let localData = JSON.parse(localStorage.getItem('allData'))
+console.log(localData)
+
+allPlayers = localData;
+
+// function getData(){
+//     const xhr = new XMLHttpRequest();
     
-    xhr.open(
-        "GET",
-        "https://ipl-team-afc91-default-rtdb.firebaseio.com/teams.json",
-        true
-    );
+//     xhr.open(
+//         "GET",
+//         "https://ipl-team-afc91-default-rtdb.firebaseio.com/teams.json",
+//         true
+//     );
 
-    xhr.onreadystatechange = function(){
-        if (xhr.readyState === xhr.DONE && xhr.status === 200){
-            allPlayers = JSON.parse(xhr.response);
-            // console.log(allPlayers);
+//     xhr.onreadystatechange = function(){
+//         if (xhr.readyState === xhr.DONE && xhr.status === 200){
+//             allPlayerss = JSON.parse(xhr.response);
+//             // console.log(allPlayers);
             
-            // console.log(allUsers.id) //undefined case
-            showDataToDom();
-        }
-    };
-    xhr.send();
-}
-getData();
+//             // console.log(allUsers.id) //undefined case
+//             showDataToDom();
+//         }
+//     };
+//     xhr.send();
+// }
+// getData();
 
+showDataToDom();
 
 function showDataToDom(){
     for(let i=0; i < allPlayers.length; i++){

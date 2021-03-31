@@ -49,8 +49,32 @@ button{
     text-align: center;
     
     text-transform: uppercase;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid orange;
+}
+/*search card*/
+#charactersList {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#card{
+    /* display: inline-block; */
+    
+    
+    padding: 20px;
+    margin: 20px;
+    background-color: rgba(94, 33, 163, 0.479);
+    width: 300px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 2px solid rgb(64, 27, 197);
     
 }
+
 
 /* //details page */
 #teampage{
